@@ -5,9 +5,12 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+
   django:
     build: ./api
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    environment:
+      - DJANGO_SETTINGS_MODULE=src.settings.dev
     volumes:
       - ./api:/app/api
     ports:
@@ -15,6 +18,7 @@ services:
     depends_on:
       - db
   frontend:
+    #tty: true #fixes the react-scripts 3.4.1 bug
     build: ./frontend
     command: ["npm", "start"]
     volumes:

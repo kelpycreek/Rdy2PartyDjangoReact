@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  db:
+    environment:
+      - POSTGRES_PASSWORD=changethisandalsodevsettings
+  django:
+    environment:
+      - DJANGO_SECRET_KEY=pleasereplacethisvalue
